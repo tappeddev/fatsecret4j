@@ -122,11 +122,11 @@ public class FoodUtility {
    * @return compact food object from the json
    */
   public static CompactFood parseCompactFoodFromJSONObject(JSONObject json) {
-
     String name = JsonUtility.getPropertyValue(json, "food_name");
     String type = JsonUtility.getPropertyValue(json, "food_type");
     String description = JsonUtility.getPropertyValue(json, "food_description");
     Long id = Long.parseLong(Objects.requireNonNull(JsonUtility.getPropertyValue(json, "food_id")));
+    String brandName = type.equals("Brand") ? json.getString("brand_name") : null;
 
     CompactFood food = new CompactFood();
 
@@ -134,6 +134,7 @@ public class FoodUtility {
     food.setType(type);
     food.setDescription(description);
     food.setId(id);
+    food.setBrandName(brandName);
 
     return food;
   }
